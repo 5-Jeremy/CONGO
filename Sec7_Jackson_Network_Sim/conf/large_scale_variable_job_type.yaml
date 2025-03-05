@@ -1,0 +1,98 @@
+hydra:
+  job:
+    chdir: True    # Set current working directory to Hydra output folder
+
+defaults:
+  - _self_
+
+exp:
+  name: "large_scale_variable_job_type"
+
+env: "SimpleEnv"
+
+env_config:
+  
+  seed: -1
+  T: 30000
+  step_time: 10
+  settle_time: 30
+  correction_factor: 0.1
+  reward:
+    resource_weight: 1
+  
+  jobs:
+    poisson_arrival_rate: 4
+    # This references a function in workloads.py that will generate the workload
+    workload: "gradual_switch"
+    workload_params:
+      start_round: 40
+      end_round: 90
+      start_dist: [0.5, 0, 0.5, 0, 0, 0, 0, 0, 0, 0] # Can also try giving all jobs to be used some prob to begin with
+      end_dist: [0.3, 0, 0.3, 0, 0, 0.2, 0, 0.2, 0, 0]
+    path:
+      Job1: ['A', 'MS33', 'MS23', 'MS38', 'MS13', 'MS16']
+      Job2: ['A', 'MS41', 'MS44', 'MS26', 'MS14', 'MS10']
+      Job3: ['A', 'MS28', 'MS49', 'MS17', 'MS35', 'MS42']
+      Job4: ['A', 'MS37', 'MS4', 'MS1', 'MS20', 'MS47']
+      Job5: ['A', 'MS34', 'MS32', 'MS45', 'MS12', 'MS30']
+      Job6: ['A', 'MS40', 'MS9', 'MS5', 'MS3', 'MS48']
+      Job7: ['A', 'MS18', 'MS15', 'MS31', 'MS11', 'MS6']
+      Job8: ['A', 'MS46', 'MS39', 'MS25', 'MS8', 'MS22']
+      Job9: ['A', 'MS36', 'MS24', 'MS2', 'MS29', 'MS27']
+      Job10: ['A', 'MS7', 'MS19', 'MS21', 'MS43']
+  
+  arch:
+    num_resource_types: 1
+    max_resources: 60
+    min_resources: 1
+    initial_resource_alloc:
+      A: [10]
+      MS1: [4]
+      MS2: [4]
+      MS3: [4]
+      MS4: [4]
+      MS5: [4]
+      MS6: [4]
+      MS7: [4]
+      MS8: [4]
+      MS9: [4]
+      MS10: [4]
+      MS11: [4]
+      MS12: [4]
+      MS13: [4]
+      MS14: [4]
+      MS15: [4]
+      MS16: [4]
+      MS17: [4]
+      MS18: [4]
+      MS19: [4]
+      MS20: [4]
+      MS21: [4]
+      MS22: [4]
+      MS23: [4]
+      MS24: [4]
+      MS25: [4]
+      MS26: [4]
+      MS27: [4]
+      MS28: [4]
+      MS29: [4]
+      MS30: [4]
+      MS31: [4]
+      MS32: [4]
+      MS33: [4]
+      MS34: [4]
+      MS35: [4]
+      MS36: [4]
+      MS37: [4]
+      MS38: [4]
+      MS39: [4]
+      MS40: [4]
+      MS41: [4]
+      MS42: [4]
+      MS43: [4]
+      MS44: [4]
+      MS45: [4]
+      MS46: [4]
+      MS47: [4]
+      MS48: [4]
+      MS49: [4]

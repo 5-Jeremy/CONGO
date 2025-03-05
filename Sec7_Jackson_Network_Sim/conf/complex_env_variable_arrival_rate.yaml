@@ -1,0 +1,68 @@
+hydra:
+  job:
+    chdir: True    # Set current working directory to Hydra output folder
+
+defaults:
+  - _self_
+
+exp:
+  name: "complex_env_variable_arrival_rate"
+
+env: "SimpleEnv"
+
+# Job1 - A
+# Job2 - A > B > E
+# Job3 - A > B > F > G > L > M
+# Job4 - A > B > F > G > L > N > O
+# Job5 - A > B > F
+# Job6 - A > C > D > H
+# Job7 - A > C > D > I > K
+# Job8 - A > C > D > J
+
+
+env_config:
+  
+  seed: -1
+  T: 30000
+  step_time: 10
+  settle_time: 30
+  correction_factor: 0.5
+  reward:
+    resource_weight: 1
+  
+  jobs:
+    poisson_arrival_rate: {0: 5, 25: 5.5, 50: 6, 75: 5.5}
+    # This references a function in workloads.py that will generate the workload
+    workload: "single_job"
+    workload_params:
+      active_job: "Job6"
+    path: # Currently, it is hardcoded so that all paths need to start with A
+      Job1: ["A"]
+      Job2: ["A","B","E"]
+      Job3: ["A","B","F","G","L","M"]
+      Job4: ["A","B","F","G","L","N","O"]
+      Job5: ["A","B","F"]
+      Job6: ["A","C","D","H"]
+      Job7: ["A","C","D","I","K"]
+      Job8: ["A","C","D","J"]
+  
+  arch:
+    num_resource_types: 1
+    max_resources: 60
+    min_resources: 1
+    initial_resource_alloc:
+      A: [10]
+      B: [10]
+      C: [10]
+      D: [10]
+      E: [10]
+      F: [10]
+      G: [10]
+      H: [10]
+      I: [10]
+      J: [10]
+      K: [10]
+      L: [10]
+      M: [10]
+      N: [10]
+      O: [10]
