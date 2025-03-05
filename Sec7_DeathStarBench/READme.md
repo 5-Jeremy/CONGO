@@ -14,9 +14,6 @@
 
 
 ### Setting up the social network application
-Unzip the DeathStarBench.zip file
-
-
 #### Before you start
 
 * go into socialNetwork folder
@@ -26,12 +23,12 @@ Unzip the DeathStarBench.zip file
     cd socialNetwork
     ```
 
-### Start docker containers
+#### Start docker containers
      `docker compose up -d`  
  
 **Tip:** use `sudo` or `dzdo` prefix to this command to avoid any permission based issues
 
-### Register users and construct social graphs
+#### Register users and construct social graphs
 
 Register users and construct social graph by running
 
@@ -41,7 +38,7 @@ Register users and construct social graph by running
 
 It will initialize a social graph from a small social network [Reed98 Facebook Networks](http://networkrepository.com/socfb-Reed98.php)
 
-### Running HTTP workload generator
+#### Running HTTP workload generator
 
 #### Make
 
@@ -53,8 +50,8 @@ back to socialNetwork
 ```bash
 cd ../socialNetwork
 ```
-### Installing jaeger for metric collection
-### Follow the below steps if you face an issue with reagards to jaeger
+#### Installing jaeger for metric collection
+Follow these steps if you face an issue with reagards to jaeger:
 - The jaeger endpoint must be started in the corresponding docker/kubernetes yaml - port number 16685 (by default only port 16686 is exposed).  
 - Install the Jaeger stubs:  
     - Clone the Jaeger IDL repo:  
